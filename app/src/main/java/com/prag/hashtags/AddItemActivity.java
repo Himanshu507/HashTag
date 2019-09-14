@@ -18,7 +18,9 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.volokh.danylo.hashtaghelper.HashTagHelper;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AddItemActivity extends AppCompatActivity {
@@ -53,8 +55,10 @@ public class AddItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String text = editText.getText().toString().trim();
+                List<String> allHashTags = mTextHashTagHelper.getAllHashTags();
                 Map<String, Object> docData = new HashMap<>();
                 docData.put("Text",text);
+                docData.put("TagsArray", allHashTags);
                 if (text!=null){
                     progressBar.setVisibility(View.VISIBLE);
                     FireBase_AddItem(docData);
